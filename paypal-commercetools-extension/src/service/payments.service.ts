@@ -26,8 +26,6 @@ import { getCurrentTimestamp } from '../utils/data.utils';
 import { logger } from '../utils/logger.utils';
 import {
   mapCommercetoolsCarrierToPayPalCarrier,
-  mapCommercetoolsCartToPayPalPriceBreakdown,
-  mapCommercetoolsLineItemsToPayPalItems,
   mapCommercetoolsMoneyToPayPalMoney,
   mapPayPalCaptureStatusToCommercetoolsTransactionState,
   mapPayPalMoneyToCommercetoolsMoney,
@@ -114,8 +112,7 @@ async function prepareCreateOrderRequest(
       {
         amount: {
           currency_code: amountPlanned.currencyCode,
-          value: mapCommercetoolsMoneyToPayPalMoney(amountPlanned),
-          breakdown: mapCommercetoolsCartToPayPalPriceBreakdown(cart),
+          value: mapCommercetoolsMoneyToPayPalMoney(amountPlanned)
         },
         shipping: !cart.shippingAddress
           ? undefined
@@ -132,15 +129,7 @@ async function prepareCreateOrderRequest(
               },
             },
         invoice_id: request?.custom_invoice_id ?? payment.id,
-        description: paymentDescription,
-        items: cart?.lineItems?.map((lineItem) =>
-          mapCommercetoolsLineItemsToPayPalItems(
-            lineItem,
-            paymentSource?.experience_context?.shipping_preference !==
-              'NO_SHIPPING' || !!cart.shippingAddress,
-            cart.locale
-          )
-        ),
+        description: paymentDescription
       },
     ],
     ...request,
@@ -450,23 +439,9 @@ export const handleUpdateOrderRequest = async (
           path: "/purchase_units/@reference_id=='default'/amount",
           value: {
             currency_code: amountPlanned.currencyCode,
-            value: mapCommercetoolsMoneyToPayPalMoney(amountPlanned),
-            breakdown: mapCommercetoolsCartToPayPalPriceBreakdown(
-              await getCart(payment.id)
-            ),
+            value: mapCommercetoolsMoneyToPayPalMoney(amountPlanned)
           },
-        } as Patch,
-        {
-          op: 'replace',
-          path: "/purchase_units/@reference_id=='default'/items",
-          value: cart?.lineItems?.map((lineItem) =>
-            mapCommercetoolsLineItemsToPayPalItems(
-              lineItem,
-              !!cart.shippingAddress,
-              cart.locale
-            )
-          ),
-        } as Patch,
+        } as Patch
       ],
     };
     const { orderId, patch } = request;
