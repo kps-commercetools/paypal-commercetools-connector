@@ -60,6 +60,5 @@
     "qs": "^6.14.2",
     "fast-xml-parser": "^5.3.5",
     "lodash": "^4.17.23"
-  },
-  "packageManager": "yarn@4.17.1"
+  }
 }
