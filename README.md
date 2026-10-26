@@ -93,7 +93,7 @@ Please set your application url (see the example in [ngrok.sh](./paypal-commerce
 
 ## Technology Stack
 
-The connector is written in TypeScript and npm is used as the package manager. All applications run on Node.js 24 (24.22.1 or newer 24.x), which is enforced via the `engines` field in each `package.json`.
+The connector is written in TypeScript and npm is used as the package manager. All applications run on Node.js 24 (24.22.1 or newer 24.x), which is declared via the `engines` field in each `package.json` (commercetools Connect uses it to select the runtime).
 
 ## Contributing
 
