@@ -80,6 +80,7 @@ The connector can be installed [directly from the commercetools marketplace](htt
 To run the connector locally for test purposes:
 
 - `cd paypal-commercetools-extension` or `cd paypal-commercetools-events`
+- run `nvm use` to switch to the Node.js version from `.nvmrc` (24.22.1 or newer 24.x is required)
 - run `npm install` to install the dependencies
 - insert commercetools and PayPal credentials to `.env` file
 - for paypal-commercetools-extension run `./bin/ngrok.sh` to start ngrok and insert the dynamic url in the `.env` file as specified in post-deploy script
@@ -92,7 +93,7 @@ Please set your application url (see the example in [ngrok.sh](./paypal-commerce
 
 ## Technology Stack
 
-The connector is written in TypeScript and npm is used as the package manager.
+The connector is written in TypeScript and npm is used as the package manager. All applications run on Node.js 24 (24.22.1 or newer 24.x), which is enforced via the `engines` field in each `package.json`.
 
 ## Contributing
 

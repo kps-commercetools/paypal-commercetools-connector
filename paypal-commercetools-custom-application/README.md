@@ -1,6 +1,7 @@
 # PayPal commercetools Custom Application
 
 ## Start development
+- `nvm use` (Node.js 24.22.1 or newer 24.x is required, see `.nvmrc`)
 - `npm install`
 - `npm start`
 

@@ -115,7 +115,7 @@ const waitForCart = async (
       const cart = await getCart(paymentId, paymentAction);
       logger.info(fetchCartLogMessage(true));
       return cart;
-    } catch (error) {
+    } catch {
       logger.info(`${fetchCartLogMessage()}`);
       await sleep(RETRY_DELAY);
     }

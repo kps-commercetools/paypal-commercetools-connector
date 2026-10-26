@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { LocalizedString } from '@commercetools/platform-sdk/dist/declarations/src/generated/models/common';
+type LocalizedString = { [key: string]: string };
 
 export type SettingsFormDataType = {
   acceptPayPal: boolean;
@@ -45,7 +45,7 @@ export type SettingsFormDataType = {
   };
   hostedFieldsPayButtonClasses: string;
   hostedFieldsInputFieldClasses: string;
-  threeDSAction: Record<string, unknown>;
+  threeDSAction: Record<string, string>;
   sendTrackingToPayPal: boolean;
   merchantId?: string;
   payUponInvoiceMailSubject: LocalizedString;

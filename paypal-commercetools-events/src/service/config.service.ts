@@ -15,7 +15,7 @@ export const getSettings = async () => {
         .execute()
     ).body;
     return customObject.value as PayPalSettings;
-  } catch (e) {
+  } catch {
     return undefined;
   }
 };
@@ -32,7 +32,7 @@ export const getCachedAccessToken = async () => {
         .get()
         .execute()
     ).body;
-  } catch (e) {
+  } catch {
     return undefined;
   }
 };

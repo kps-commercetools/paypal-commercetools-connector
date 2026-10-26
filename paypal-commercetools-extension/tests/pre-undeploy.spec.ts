@@ -47,6 +47,7 @@ function sleep(milliseconds: number) {
 
 describe('Testing pre undeploy', () => {
   test('Testing pre undeploy', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('../src/connector/pre-undeploy');
     await sleep(5000);
     expect(apiRoot.delete).toHaveBeenCalledTimes(4);

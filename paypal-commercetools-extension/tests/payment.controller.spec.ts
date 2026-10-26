@@ -180,6 +180,7 @@ describe('create order with various configurations', () =>
     ],
   ])(
     'given valid create order data %p, which is %p, results in order creation',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async (createOrderData: any, description) => {
       const paymentRequest = {
         obj: {
@@ -195,8 +196,8 @@ describe('create order with various configurations', () =>
           id: randomUUID(),
         },
       } as any;
-      let paymentResponse = await paymentController('Update', paymentRequest);
-      let payPalOrder = expectSuccessfulResponse(paymentResponse);
+      const paymentResponse = await paymentController('Update', paymentRequest);
+      const payPalOrder = expectSuccessfulResponse(paymentResponse);
       if (createOrderData.paymentSource.card)
         expect(payPalOrder).toHaveProperty('status', 'CREATED');
       else
@@ -342,8 +343,9 @@ async function completeValidOrder(
   customAmount?: number,
   customStringAmount?: string
 ) {
-  let { paymentRequest, payPalOrder, customInvoiceId } =
-    await createValidTransaction(customAmount);
+  const validTransaction = await createValidTransaction(customAmount);
+  const { paymentRequest, customInvoiceId } = validTransaction;
+  let { payPalOrder } = validTransaction;
   paymentRequest.obj = {
     ...paymentRequest.obj,
     interfaceId: payPalOrder.id,

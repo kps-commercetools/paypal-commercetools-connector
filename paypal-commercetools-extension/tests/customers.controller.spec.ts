@@ -67,7 +67,7 @@ describe('Testing PayPal customer Requests', () => {
         customerResponse,
         'getUserIDTokenResponse'
       );
-      expect(token.length).toBe(681);
+      expect(token).toMatch(/^[\w-]+\.[\w-]+\.[\w-]+$/);
     },
     longTestTimeoutMs
   );

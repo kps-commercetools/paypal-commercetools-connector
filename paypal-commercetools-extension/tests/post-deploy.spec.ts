@@ -40,6 +40,7 @@ describe('Testing post deploy', () => {
       jest.mock('../src/paypal/webhooks_api', () => ({
         WebhooksApi: jest.fn().mockImplementation(() => webhooksApi),
       }));
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       require('../src/connector/post-deploy');
       await sleep(10000);
       expect(apiRoot.post).toHaveBeenCalledTimes(8);
